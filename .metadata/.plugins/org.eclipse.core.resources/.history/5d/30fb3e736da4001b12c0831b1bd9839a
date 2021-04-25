@@ -1,0 +1,46 @@
+package Pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class HomePage {
+
+	static WebDriver driver;
+	WebDriverWait wait;
+
+	// Locators of Elements of the registeration page
+
+	By tweetTxt = By.xpath("//div/div/div[@class='public-DraftStyleDefault-block public-DraftStyleDefault-ltr']");
+	By tweetBtn = By.xpath("//div/div[@data-testid='tweetButtonInline']");
+
+	public HomePage(WebDriver driver) {
+		HomePage.driver = driver;
+		wait = new WebDriverWait(driver, 1000);
+	}
+
+	// Set email address Text field
+	public void setTweetText(String Tweettext) throws InterruptedException {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(tweetTxt));
+		driver.findElement(tweetTxt).sendKeys(Tweettext);
+	}
+
+	// click on tweet button
+	public void clickTweetButton() throws InterruptedException {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(tweetBtn));
+		driver.findElement(tweetBtn).click();
+	}
+
+	
+//		
+//		public String verifyTextIsDisplayed()throws InterruptedException{
+//			
+//			//ElementIsDisplayed(driver, text, "Text");
+//			String actualTitle = GetElementText(driver,myaccountTxt ,"My account Text");
+//			return actualTitle;
+//			
+//			
+//		}
+
+}

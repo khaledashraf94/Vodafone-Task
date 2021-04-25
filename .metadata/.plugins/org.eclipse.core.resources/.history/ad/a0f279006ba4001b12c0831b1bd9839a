@@ -1,0 +1,61 @@
+package Pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class HomePage {
+
+	static WebDriver driver;
+	WebDriverWait wait;
+	
+	// Locators of Elements of the registeration page
+
+	By emailTxt = By.name("session[username_or_email]");
+	By password =  By.name("session[password]");
+	By loginformBtn = By.xpath("//div/div[@data-testid='LoginForm_Login_Button']");
+	
+			
+	public HomePage(WebDriver driver) {
+		HomePage.driver = driver;
+		wait = new WebDriverWait(driver, 1000);
+	}
+	
+	//click on login button
+	public void clickLogin() throws InterruptedException {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(loginBtn));
+		driver.findElement(loginBtn).click(); 
+	}
+	
+	
+	// Set email address Text field
+		public void setEmailvalue(String email) throws InterruptedException {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(emailTxt));
+			driver.findElement(emailTxt).sendKeys(email);
+		}
+		
+		// Set Password Text field
+			public void setPassowrdvalue(String Password) throws InterruptedException {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(password));
+				driver.findElement(password).sendKeys(Password);
+			}
+		// click Login form button
+		public void clickLoginButton() throws InterruptedException {
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(loginformBtn));
+			driver.findElement(loginformBtn).click(); 
+		}
+//		
+//		public String verifyTextIsDisplayed()throws InterruptedException{
+//			
+//			//ElementIsDisplayed(driver, text, "Text");
+//			String actualTitle = GetElementText(driver,myaccountTxt ,"My account Text");
+//			return actualTitle;
+//			
+//			
+//		}
+
+
+	
+}

@@ -1,0 +1,52 @@
+package TestCases;
+import org.testng.annotations.Test;
+
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+
+
+import Base.TestBase;
+
+import Pages.HomePage;
+import Pages.LoginPage;
+
+
+public class PositiveTCs extends TestBase{
+		HomePage homeObj;
+		LoginPage loginObj;
+		
+		
+		@BeforeTest
+		public void beforeMethod() throws InterruptedException {
+			homeObj = new HomePage(driver);
+			loginObj = new LoginPage(driver);
+			
+			
+		}
+		@Test(priority = 1)
+		public void verifythatTweetis250CharMAX() throws InterruptedException {
+			
+			loginObj.clickLogin();
+			loginObj.setEmailvalue("rana_amr@outlook.com");
+			loginObj.setPassowrdvalue("rana@1995");
+			loginObj.clickLoginButton();
+			String ExpectedText = "This tweet can be longer than 250 character , This tweet can be longer than 250 character , This tweet can be longer than 250 character ,This tweet can be longer than 250 character ,This tweet can be longer than 250 character ,This tweet can be longer than 250 character.\r\n" + 
+					    "RanaAmr";
+			homeObj.setTweetFieldText(ExpectedText);
+			homeObj.clickTweetButton();
+			String ActualText = homeObj.getTweetText();
+			Assert.assertEquals(ExpectedText, ActualText);
+			
+			
+		
+	
+	
+
+	}
+		
+	
+
+
+
+}

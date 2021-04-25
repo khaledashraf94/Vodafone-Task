@@ -1,0 +1,57 @@
+package Pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class HomePage {
+
+	static WebDriver driver;
+	WebDriverWait wait;
+
+	// Locators of Elements of the registeration page
+
+	By tweetfieldTxt = By.xpath("//div/div/div[@class='public-DraftStyleDefault-block public-DraftStyleDefault-ltr']");
+	By tweetBtn = By.xpath("//div/div[@data-testid='tweetButtonInline']");
+	By txtTweet = By.xpath("//div[@lang='und']/span");
+
+	public HomePage(WebDriver driver) {
+		HomePage.driver = driver;
+		wait = new WebDriverWait(driver, 1000);
+	}
+	
+
+	// Set Tweet Text field
+	public void setTweetFieldText(String Tweettext) throws InterruptedException {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(tweetfieldTxt));
+		driver.findElement(tweetfieldTxt).sendKeys(Tweettext);
+	}
+
+	// click on tweet button
+	public void clickTweetButton() throws InterruptedException {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(tweetBtn));
+		driver.findElement(tweetBtn).click();
+	}
+	
+	//get the latest tweet text
+	
+	public String getTweetText() throws InterruptedException {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(txtTweet));
+		return driver.findElement(txtTweet).getText();
+		
+	}
+
+
+	
+//		
+//		public String verifyTextIsDisplayed()throws InterruptedException{
+//			
+//			//ElementIsDisplayed(driver, text, "Text");
+//			String actualTitle = GetElementText(driver,myaccountTxt ,"My account Text");
+//			return actualTitle;
+//			
+//			
+//		}
+
+}
